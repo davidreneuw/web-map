@@ -1,0 +1,7 @@
+services:
+  web_app:
+    image: ghcr.io/peanutbutter-memory/webmap:latest
+    container_name: web_app
+    restart: always
+    ports:
+      - "8080:8080"

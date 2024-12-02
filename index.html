@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Web map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+
+    <!-- 75% viewport height -->
+    <style>
+    .flex-container {
+    display: flex;
+    flex-direction: column;
+    background-color: DodgerBlue;
+    }
+
+    .flex-container > div {
+    background-color: #f1f1f1;
+    width: 100h;
+    height: 100v;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+    }
+    
+    #title {text-align: left;}
+    #map {height: 75vh;}
+    #footer {text-align: center; background-color: aqua;}
+    
+    </style>
+
+  </head>
+  <body>
+    
+    <div class="flex-container">
+        <div id="title">
+          Our initial web application :)
+        </div>
+        <div>
+            <button onclick="alert('Hello world!')">Click me!</button>
+        </div>
+        <div id="map"></div>
+        <div id="footer">
+            Footer here
+        </div>
+    </div>
+
+    <script>
+        // Initialize the map and set its view to a specific location and zoom level
+        var map = L.map('map').setView([56, -105], 4);
+
+        // Add a tile layer to the map (OpenStreetMap tiles in this case)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Add a marker to the map at the specified location
+        var marker = L.marker([56, -105]).addTo(map);
+
+        // Add a popup to the marker
+        marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+    </script>
+
+  </body>
+</html>
