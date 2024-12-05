@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Web map</title>
+    <title>Web map for client</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
      crossorigin=""/>
@@ -15,22 +15,30 @@
     .flex-container {
     display: flex;
     flex-direction: column;
-    background-color: DodgerBlue;
+    background-color: rgb(86, 89, 92);
+    height: 100vh;
     }
 
     .flex-container > div {
     background-color: #f1f1f1;
-    width: 100h;
-    height: 100v;
-    margin: 10px;
-    text-align: center;
-    line-height: 75px;
-    font-size: 30px;
+    width: 100%;
+    height: auto;
+    margin: 2px;
+    line-height: 50px;
+    font-size: 20px;
     }
     
-    #title {text-align: left;}
+    .left-justify {
+      text-align: left;
+      padding-left: 10px;
+    }
+    
+    #title {text-align: center;
+    font-size: 25px;}
     #map {height: 75vh;}
-    #footer {text-align: center; background-color: aqua;}
+    #footer {text-align: center; 
+      background-color: rgb(193, 214, 214);
+    line-height: 1.2;}
     
     </style>
 
@@ -39,14 +47,33 @@
     
     <div class="flex-container">
         <div id="title">
-          Our initial web application :)
+          Prototype -- Web map
         </div>
-        <div>
-            <button onclick="alert('Hello world!')">Click me!</button>
+        <div class="left-justify">
+          <label for="locationDropdown">Select a Location:</label>
+          <select id="locationDropdown" onchange="handleLocationChange()">
+              <option value="default">Default view of Canada</option>
+              <option value="iqaluit">Iqaluit Deep Port</option>
+              <option value="shippagan">Shippagan Harbor</option>
+          </select>
+          
+          <br>
+          
+            <label for="algorithmDropdown">Select an Algorithm:</label>
+            <select id="algorithmDropdown" onchange="handleSelectionChange()">
+                <option value="objectDetection">Object detection with high resolution imagery</option>
+                <option value="coastalScan">Coastal scanning with Sentinel 2</option>
+            </select>
+          
+            <br>
+
+            <button onclick="handleButtonClick()">Run Algorithm on selected location</button>
+          
         </div>
+
         <div id="map"></div>
         <div id="footer">
-            Footer here
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam imperdiet enim ut ipsum vestibulum, quis cursus purus iaculis. Mauris metus mauris, convallis in commodo vitae, sodales at ante. Nulla et convallis massa. Nulla efficitur diam dui, gravida pulvinar felis consequat sed. Aenean egestas tincidunt ante ac volutpat. Vivamus nunc ante, rutrum eu velit at, posuere lacinia eros. Ut mattis accumsan leo nec tincidunt. Aliquam blandit lacus id elit congue, nec maximus velit tempus. Morbi suscipit enim eu ligula convallis, sit amet congue felis mattis. In placerat erat vel dui luctus feugiat. Fusce tortor nulla, dapibus in urna porta, iaculis gravida enim. Nullam porttitor vulputate urna eget maximus. Integer ut hendrerit eros, sed venenatis lacus. Nunc efficitur ultrices pharetra
         </div>
     </div>
 
@@ -59,11 +86,24 @@
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        // Add a marker to the map at the specified location
-        var marker = L.marker([56, -105]).addTo(map);
+        // Define coordinates for each location
+        var locations = {
+        default: [[56, -105], 4],
+        iqaluit: [[63.7467, -68.5167], 12],
+        shippagan: [[47.7444, -64.7053], 12]
+    };
 
-        // Add a popup to the marker
-        marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+      // Function to handle location change
+      function handleLocationChange() {
+          var selectedLocation = document.getElementById('locationDropdown').value;
+          var coords = locations[selectedLocation][0];
+          var zoom = locations[selectedLocation][1];
+          if (coords) {
+              map.setView(coords, zoom);
+        }
+    }
+
+
     </script>
 
   </body>
