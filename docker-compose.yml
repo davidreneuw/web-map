@@ -1,10 +1,9 @@
 services:
-  web_app:
-    image: ghcr.io/peanutbutter-memory/webmap:latest
-    container_name: web_app
-    restart: always
-    volumes:
-      - datahub-blob:/blob
-      - datahub-fs:/fs
+  web:
+    build: .
     ports:
-      - "80:80"
+      - "5000:5000"
+    volumes:
+      - /mnt/e/code/tc_npp_inspector_deployment_testing_web_map/data:/app/blob
+    environment:
+      - FLASK_ENV=development

@@ -4,9 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Display</title>
+
+    <style>
+    .flex-container {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(86, 89, 92);
+    height: auto;
+    }
+
+    .flex-container > div {
+    background-color: #f1f1f1;
+    width: 100%;
+    height: auto;
+    margin: 2px;
+    line-height: 50px;
+    font-size: 20px;
+    }
+    
+    .left-justify {
+      text-align: left;
+      padding-left: 10px;
+    }
+    
+    #title {text-align: center;
+    font-size: 25px;}
+    #map {height: 75vh;}
+    #footer {text-align: center; 
+      background-color: rgb(193, 214, 214);
+    line-height: 1.2;}
+    
+    </style>
+
 </head>
+
 <body>
-    <h1>Image from External Directory</h1>
-    <img src="{{('serve_image', filename=image_filename)}}">
+
+    <div class="flex-container">
+        <div id="title">
+            <h1>Image from External Directory</h1>
+            <p>Image url is "{{url_for('serve_file_from_blob', filename=image_filename)}}"</p>
+            <h2>Download file</h2>
+                <a href="{{ url_for('download_file_from_blob', filename=image_filename) }}" download>
+                <button>Download File</button>
+    </a>
+        </div>
+
+        <div id="view-image">
+            <img src="{{url_for('serve_file_from_blob', filename=image_filename)}}" >
+
+        </div>
+
+    </div>
+
+
 </body>
+
 </html>

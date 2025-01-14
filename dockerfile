@@ -13,11 +13,14 @@ COPY requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Expose the port
-EXPOSE 80
+EXPOSE 5000
 # Define environment variable
-#ENV FLASK_ENV=development
+ENV FLASK_ENV=development
 
 COPY . /app
 
 # -b 0.0.0.0:80: Binds the server to all interfaces on port 80.
-CMD ["gunicorn", "-b", "0.0.0.0:80", "app:app"]
+#CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]
+
+# Testing
+CMD ["python", "app.py"]
