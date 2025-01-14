@@ -43,7 +43,7 @@
     <div class="flex-container">
         <div id="title">
             <h1>Image from External Directory</h1>
-            <p>Image url is "{{url_for('serve_image', filename=image_filename)}}"</p>
+            <p>Image url is "{{url_for('serve_file', filename=image_filename)}}"</p>
             <h2>Download file</h2>
                 <a href="{{ url_for('download_file_from_blob', filename=image_filename) }}" download>
                 <button>Download File</button>
@@ -51,7 +51,7 @@
         </div>
 
         <div id="view-image">
-            <img src="{{url_for('serve_image', filename=image_filename)}}" >
+            <img src="{{url_for('serve_file', filename=image_filename)}}" >
 
         </div>
 

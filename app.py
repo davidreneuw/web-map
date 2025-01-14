@@ -14,8 +14,8 @@ def index():
     image_filename = "Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi.jpg"
     return render_template("index.html", image_filename=image_filename)
 
-@app.route("/image/<filename>")
-def serve_image(filename):
+@app.route("/<filename>")
+def serve_file(filename):
     if DEPLOY:
         proxy_url = "/app/WEB"
         full_url = f"{proxy_url}/{filename}"
