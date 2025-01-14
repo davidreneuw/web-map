@@ -5,7 +5,7 @@ from flask import Flask, url_for, send_from_directory, render_template
 
 BLOB_DIRECTORY = "/blob"
 
-DEPLOY = False
+DEPLOY = True
 
 app = Flask(__name__)
 
