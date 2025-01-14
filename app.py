@@ -3,7 +3,7 @@ import warnings
 
 from flask import Flask, url_for, send_from_directory, render_template
 
-BLOB_DIRECTORY = "/app/blob"
+BLOB_DIRECTORY = "/data/blob"
 
 app = Flask(__name__)
 
@@ -12,10 +12,8 @@ def index():
     image_filename = "Orange_tabby_cat_sitting_on_fallen_leaves-Hisashi.jpg"
     return render_template("index.html", image_filename=image_filename)
 
-
-# FIXME: Should this is be /fetch/<filename>? 
-@app.route("/<filename>")
-def serve_file_from_blob(filename):
+@app.route("/image/<filename>")
+def serve_image(filename):
     return send_from_directory(BLOB_DIRECTORY, filename, as_attachment=False)
 
 @app.route("/download/<filename>")
