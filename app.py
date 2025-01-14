@@ -18,7 +18,7 @@ def index():
 def serve_image(filename):
     if DEPLOY:
         proxy_url = "/app/WEB"
-        full_url = f"{proxy_url}/filename"
+        full_url = f"{proxy_url}/{filename}"
         return send_from_directory(BLOB_DIRECTORY, full_url, as_attachment=False)
     else:
         return send_from_directory(BLOB_DIRECTORY, filename, as_attachment=False)
@@ -27,7 +27,7 @@ def serve_image(filename):
 def download_file_from_blob(filename):
     if DEPLOY:
         proxy_url = "/app/WEB"
-        full_url = f"{proxy_url}/filename"
+        full_url = f"{proxy_url}/{filename}"
         return send_from_directory(BLOB_DIRECTORY, full_url, as_attachment=True)
     else:
         return send_from_directory(BLOB_DIRECTORY, filename, as_attachment=True)
