@@ -3,7 +3,7 @@ import warnings
 
 from flask import Flask, url_for, send_from_directory, render_template
 
-BLOB_DIRECTORY = "/data/blob"
+BLOB_DIRECTORY = "/blob"
 
 app = Flask(__name__)
 
