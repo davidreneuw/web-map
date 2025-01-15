@@ -3,9 +3,13 @@ import warnings
 
 from flask import Flask, url_for, send_from_directory, render_template
 
-BLOB_DIRECTORY = "/blob"
+AZURE_BLOB_MOUNT = "/blob"
 
 app = Flask(__name__)
+
+# Define your base directory relative to this file
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BLOB_DIRECTORY = os.path.join(BASE_DIR, AZURE_BLOB_MOUNT)
 
 @app.route("/")
 def index():
